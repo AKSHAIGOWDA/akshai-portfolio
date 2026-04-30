@@ -1,100 +1,119 @@
-<script>
-  function goTo(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-  }
-</script><!-- ✅ COPY THIS ENTIRE CODE AND PASTE INTO index.html ON GITHUB -->
+<!-- ✅ COPY THIS ENTIRE CODE AND PASTE INTO index.html ON GITHUB -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+<meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Akshai Narayanappa — Data Engineer</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: #0a0e14; color: #e8f0f8; font-family: 'Courier New', monospace; }
-  a { color: inherit; text-decoration: none; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:#0a0e14; color:#e8f0f8; font-family:'Courier New',monospace; min-height:100vh; }
+  a { color:inherit; text-decoration:none; }
 
-  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid #1e2d42; position: sticky; top: 0; background: #0a0e14; z-index: 10; }
-  .logo { color: #00ff99; font-weight: 700; font-size: 16px; letter-spacing: 0.05em; }
-  .nav-links { display: flex; gap: 28px; }
-  .nav-links a { color: #6b8aaa; font-size: 13px; cursor: pointer; letter-spacing: 0.04em; }
-  .nav-links a:hover { color: #00ff99; }
+  nav { display:flex; justify-content:space-between; align-items:center; padding:18px 40px; border-bottom:1px solid #1e2d42; background:#0a0e14; position:sticky; top:0; z-index:10; }
+  .logo { color:#00ff99; font-weight:700; font-size:16px; cursor:pointer; }
+  .nav-links { display:flex; gap:24px; }
+  .nav-links a { color:#6b8aaa; font-size:13px; cursor:pointer; letter-spacing:0.04em; padding:6px 12px; border-radius:4px; border:1px solid transparent; transition:all 0.2s; }
+  .nav-links a:hover { color:#00ff99; border-color:#1e2d42; }
+  .nav-links a.active { color:#00ff99; border-color:#00ff99; }
 
-  .hero { padding: 80px 40px 60px; max-width: 860px; margin: 0 auto; }
-  .hero-tag { color: #00ff99; font-size: 13px; letter-spacing: 0.12em; margin-bottom: 12px; }
-  .hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
-  .hero-title { font-size: 20px; color: #6b8aaa; margin-bottom: 24px; }
-  .hero-bio { font-size: 15px; color: #6b8aaa; line-height: 1.8; max-width: 600px; margin-bottom: 36px; }
-  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
-  .btn-primary { background: #00ff99; color: #000; border: none; padding: 10px 24px; border-radius: 6px; font-family: inherit; font-weight: 700; font-size: 13px; cursor: pointer; letter-spacing: 0.05em; }
-  .btn-primary:hover { background: #00cc7a; }
-  .btn-secondary { background: transparent; color: #00ff99; border: 1px solid #00ff99; padding: 10px 24px; border-radius: 6px; font-family: inherit; font-weight: 700; font-size: 13px; cursor: pointer; letter-spacing: 0.05em; }
-  .btn-secondary:hover { background: #00ff9911; }
+  .page { display:none; max-width:860px; margin:0 auto; padding:60px 40px; }
+  .page.active { display:block; }
 
-  hr { border: none; border-top: 1px solid #1e2d42; margin: 0 40px; }
-  section { max-width: 860px; margin: 0 auto; padding: 60px 40px 0; }
-  .section-label { color: #00ff99; font-size: 11px; letter-spacing: 0.18em; margin-bottom: 8px; text-transform: uppercase; }
-  .section-title { font-size: 24px; font-weight: 700; margin-bottom: 32px; }
+  .section-label { color:#00ff99; font-size:11px; letter-spacing:0.18em; margin-bottom:8px; text-transform:uppercase; }
+  .section-title { font-size:28px; font-weight:700; margin-bottom:32px; }
 
-  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
-  .skill-chip { background: #111720; border: 1px solid #1e2d42; border-radius: 6px; padding: 10px 14px; font-size: 13px; color: #6b8aaa; }
-  .skill-cat { color: #00ff99; font-weight: 700; font-size: 12px; display: block; margin-bottom: 2px; }
-  .cert-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
-  .cert-badge { background: #1a2235; border: 1px solid #00cc7a; border-radius: 20px; padding: 6px 14px; font-size: 12px; color: #00cc7a; letter-spacing: 0.04em; }
+  /* HOME */
+  .hero-tag { color:#00ff99; font-size:13px; letter-spacing:0.12em; margin-bottom:12px; }
+  .hero h1 { font-size:48px; font-weight:700; margin-bottom:8px; letter-spacing:-0.02em; }
+  .hero-subtitle { font-size:20px; color:#6b8aaa; margin-bottom:24px; }
+  .hero-bio { font-size:15px; color:#6b8aaa; line-height:1.8; max-width:600px; margin-bottom:36px; }
+  .btn-row { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn-primary { background:#00ff99; color:#000; border:none; padding:10px 24px; border-radius:6px; font-family:inherit; font-weight:700; font-size:13px; cursor:pointer; }
+  .btn-primary:hover { background:#00cc7a; }
+  .btn-secondary { background:transparent; color:#00ff99; border:1px solid #00ff99; padding:10px 24px; border-radius:6px; font-family:inherit; font-weight:700; font-size:13px; cursor:pointer; }
+  .btn-secondary:hover { background:#00ff9911; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:48px; }
+  .stat { background:#111720; border:1px solid #1e2d42; border-radius:8px; padding:16px 20px; }
+  .stat-num { font-size:28px; font-weight:700; color:#00ff99; }
+  .stat-label { font-size:12px; color:#6b8aaa; margin-top:4px; }
 
-  .exp-card { background: #111720; border: 1px solid #1e2d42; border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; }
-  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
-  .exp-company { color: #00ff99; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
-  .exp-role { font-size: 16px; font-weight: 700; }
-  .exp-date { color: #3d5470; font-size: 12px; text-align: right; }
-  .exp-dot { color: #6b8aaa; font-size: 13px; margin-bottom: 4px; padding-left: 12px; }
+  /* ABOUT */
+  .skill-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; margin-bottom:32px; }
+  .skill-chip { background:#111720; border:1px solid #1e2d42; border-radius:6px; padding:10px 14px; font-size:13px; color:#6b8aaa; }
+  .skill-cat { color:#00ff99; font-weight:700; font-size:11px; display:block; margin-bottom:2px; letter-spacing:0.08em; }
+  .cert-row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:32px; }
+  .cert-badge { background:#1a2235; border:1px solid #00cc7a; border-radius:20px; padding:6px 14px; font-size:12px; color:#00cc7a; }
+  .about-bio { font-size:14px; color:#6b8aaa; line-height:1.9; max-width:640px; }
+  .hobbies { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+  .hobby { background:#111720; border:1px solid #1e2d42; border-radius:20px; padding:5px 14px; font-size:12px; color:#6b8aaa; }
 
-  .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
-  .project-card { background: #111720; border: 1px solid #1e2d42; border-radius: 10px; padding: 20px 22px; }
-  .project-tag { color: #00ff99; font-size: 11px; letter-spacing: 0.12em; margin-bottom: 8px; }
-  .project-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
-  .project-desc { font-size: 13px; color: #6b8aaa; line-height: 1.7; }
+  /* EXPERIENCE */
+  .exp-card { background:#111720; border:1px solid #1e2d42; border-radius:10px; padding:24px; margin-bottom:16px; }
+  .exp-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
+  .exp-company { color:#00ff99; font-size:13px; font-weight:700; margin-bottom:4px; }
+  .exp-role { font-size:17px; font-weight:700; }
+  .exp-date { color:#3d5470; font-size:12px; text-align:right; line-height:1.6; }
+  .exp-dot { color:#6b8aaa; font-size:13px; margin-bottom:6px; padding-left:4px; }
 
-  .ai-box { background: #111720; border: 1px solid #00cc7a; border-radius: 12px; padding: 32px; text-align: center; }
-  .ai-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
-  .ai-sub { font-size: 14px; color: #6b8aaa; margin-bottom: 24px; line-height: 1.7; }
-  .ai-result { background: #0a1a10; border: 1px solid #00cc7a; border-radius: 8px; padding: 20px 22px; text-align: left; font-size: 13px; color: #a0e8c0; line-height: 1.8; margin-top: 20px; white-space: pre-wrap; display: none; }
-  .ai-loading { color: #00cc7a; font-size: 13px; margin-top: 16px; letter-spacing: 0.05em; display: none; }
-  .ai-error { color: #ff6b6b; font-size: 13px; margin-top: 16px; display: none; }
+  /* PROJECTS */
+  .project-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+  .project-card { background:#111720; border:1px solid #1e2d42; border-radius:10px; padding:22px; transition:border-color 0.2s; }
+  .project-card:hover { border-color:#00ff9955; }
+  .project-tag { color:#00ff99; font-size:11px; letter-spacing:0.1em; margin-bottom:8px; }
+  .project-title { font-size:15px; font-weight:700; margin-bottom:8px; }
+  .project-desc { font-size:13px; color:#6b8aaa; line-height:1.7; }
 
-  .contact-row { display: flex; gap: 20px; flex-wrap: wrap; }
-  .contact-item { background: #111720; border: 1px solid #1e2d42; border-radius: 8px; padding: 14px 20px; font-size: 13px; color: #6b8aaa; display: flex; gap: 10px; align-items: center; }
-  .contact-item span.ic { color: #00ff99; }
+  /* CONTACT */
+  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-bottom:40px; }
+  .contact-card { background:#111720; border:1px solid #1e2d42; border-radius:10px; padding:22px; }
+  .contact-icon { color:#00ff99; font-size:20px; margin-bottom:10px; }
+  .contact-label { font-size:11px; color:#3d5470; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
+  .contact-value { font-size:14px; color:#e8f0f8; }
+  .contact-form { background:#111720; border:1px solid #1e2d42; border-radius:10px; padding:28px; }
+  .contact-form h3 { font-size:16px; margin-bottom:20px; color:#e8f0f8; }
+  .form-group { margin-bottom:16px; }
+  .form-group label { display:block; font-size:12px; color:#6b8aaa; margin-bottom:6px; letter-spacing:0.06em; }
+  .form-group input, .form-group textarea { width:100%; background:#0a0e14; border:1px solid #1e2d42; border-radius:6px; padding:10px 14px; color:#e8f0f8; font-family:inherit; font-size:13px; outline:none; }
+  .form-group input:focus, .form-group textarea:focus { border-color:#00ff99; }
+  .form-group textarea { height:100px; resize:vertical; }
 
-  .footer { text-align: center; padding: 40px; color: #3d5470; font-size: 12px; margin-top: 60px; }
+  .footer { text-align:center; padding:32px; color:#3d5470; font-size:12px; border-top:1px solid #1e2d42; margin-top:60px; }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Akshai Narayanappa</div>
+  <div class="logo" onclick="showPage('home')">Akshai Narayanappa</div>
   <div class="nav-links">
-    <a onclick="goTo('about')">about</a>
-    <a onclick="goTo('experience')">experience</a>
-    <a onclick="goTo('projects')">projects</a>
-    <a onclick="goTo('contact')">contact</a>
+    <a onclick="showPage('home')" id="nav-home" class="active">home</a>
+    <a onclick="showPage('about')" id="nav-about">about</a>
+    <a onclick="showPage('experience')" id="nav-experience">experience</a>
+    <a onclick="showPage('projects')" id="nav-projects">projects</a>
+    <a onclick="showPage('contact')" id="nav-contact">contact</a>
   </div>
 </nav>
 
-<div class="hero">
+<!-- HOME -->
+<div class="page active hero" id="page-home">
   <div class="hero-tag">// data engineer</div>
   <h1>Akshai Narayanappa</h1>
-  <div class="hero-title">Building scalable data systems on GCP</div>
+  <div class="hero-subtitle">Building scalable data systems on GCP</div>
   <p class="hero-bio">3+ years crafting ETL pipelines, BigQuery data warehouses, and Airflow orchestrations. GCP Certified. Based in Bangalore, India.</p>
   <div class="btn-row">
-    <button class="btn-primary" onclick="goTo('about')">View My Work ↓</button>
-    <a class="btn-secondary" href="mailto:akshai.narayanappa@gmail.com">Contact Me</a>
+    <button class="btn-primary" onclick="showPage('projects')">View My Work →</button>
+    <button class="btn-secondary" onclick="showPage('contact')">Contact Me</button>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">2</div><div class="stat-label">GCP Certifications</div></div>
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Tech Skills</div></div>
+    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Projects</div></div>
   </div>
 </div>
 
-<hr/>
-
-<section id="about">
+<!-- ABOUT -->
+<div class="page" id="page-about">
   <div class="section-label">// about</div>
   <div class="section-title">Skills & Tech Stack</div>
   <div class="skill-grid">
@@ -109,16 +128,29 @@
     <div class="skill-chip"><span class="skill-cat">Platform</span>Pub/Sub</div>
     <div class="skill-chip"><span class="skill-cat">Platform</span>Cloud Storage</div>
   </div>
+
+  <div class="section-label">// certifications</div>
+  <div class="section-title" style="font-size:20px">Credentials</div>
   <div class="cert-row">
     <span class="cert-badge">✓ GCP Associate Cloud Engineer</span>
     <span class="cert-badge">✓ GCP Professional ML Engineer</span>
     <span class="cert-badge">✓ B.Tech CSE — GITAM University 2022</span>
   </div>
-</section>
 
-<hr style="margin-top:60px"/>
+  <div class="section-label" style="margin-top:32px">// bio</div>
+  <div class="section-title" style="font-size:20px">About Me</div>
+  <p class="about-bio">Akshai Narayanappa is a Data Engineer at Prodapt Solutions, Bangalore with 3+ years of experience building scalable data pipelines and cloud-native solutions on GCP. He specializes in Python, SQL, BigQuery, and Apache Airflow, with a strong track record of designing and optimizing ETL workflows for large-scale data processing.</p>
+  <div class="hobbies">
+    <span class="hobby">⚽ Football</span>
+    <span class="hobby">🏸 Badminton</span>
+    <span class="hobby">🎵 Music</span>
+    <span class="hobby">📺 Anime</span>
+    <span class="hobby">🍛 South Indian Food</span>
+  </div>
+</div>
 
-<section id="experience">
+<!-- EXPERIENCE -->
+<div class="page" id="page-experience">
   <div class="section-label">// experience</div>
   <div class="section-title">Work History</div>
   <div class="exp-card">
@@ -129,67 +161,84 @@
       </div>
       <div class="exp-date">2022 – Present<br/>Bangalore, India</div>
     </div>
-    <div style="margin-top:12px">
-      <div class="exp-dot">— Designed and maintained large-scale ETL pipelines on GCP</div>
-      <div class="exp-dot">— Optimized BigQuery schemas and queries for reporting dashboards</div>
-      <div class="exp-dot">— Built Airflow DAGs for complex multi-step pipeline orchestration</div>
-      <div class="exp-dot">— Worked across Cloud Storage, Dataflow, and Pub/Sub services</div>
-    </div>
+    <div class="exp-dot">— Designed and maintained large-scale ETL pipelines on GCP</div>
+    <div class="exp-dot">— Optimized BigQuery schemas and queries for reporting dashboards</div>
+    <div class="exp-dot">— Built Airflow DAGs for complex multi-step pipeline orchestration</div>
+    <div class="exp-dot">— Worked across Cloud Storage, Dataflow, and Pub/Sub services</div>
+    <div class="exp-dot">— Contributed to ML pipeline infrastructure on Vertex AI</div>
   </div>
-</section>
 
-<hr style="margin-top:60px"/>
+  <div class="section-label" style="margin-top:40px">// education</div>
+  <div class="section-title" style="font-size:20px">Education</div>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-company">GITAM University</div>
+        <div class="exp-role">B.Tech — Computer Science & Engineering</div>
+      </div>
+      <div class="exp-date">2018 – 2022<br/>India</div>
+    </div>
+    <div class="exp-dot">— Graduated with a degree in Computer Science & Engineering</div>
+    <div class="exp-dot">— Built foundation in algorithms, databases, and software engineering</div>
+  </div>
+</div>
 
-<section id="projects">
+<!-- PROJECTS -->
+<div class="page" id="page-projects">
   <div class="section-label">// projects</div>
   <div class="section-title">Selected Work</div>
   <div class="project-grid">
     <div class="project-card">
       <div class="project-tag">GCP · BigQuery</div>
       <div class="project-title">Data Warehouse Migration</div>
-      <div class="project-desc">Migrated on-prem data warehouse to BigQuery, improving query performance and reducing cost.</div>
+      <div class="project-desc">Migrated on-prem data warehouse to BigQuery, improving query performance and significantly reducing infrastructure cost.</div>
     </div>
     <div class="project-card">
       <div class="project-tag">Airflow · Python</div>
       <div class="project-title">ETL Pipeline Automation</div>
-      <div class="project-desc">Built Airflow DAGs to orchestrate complex multi-source ETL workflows with error handling.</div>
+      <div class="project-desc">Built Airflow DAGs to orchestrate complex multi-source ETL workflows with robust error handling and alerting.</div>
     </div>
     <div class="project-card">
-      <div class="project-tag">GCP · ML</div>
+      <div class="project-tag">GCP · Vertex AI</div>
       <div class="project-title">ML Data Pipeline</div>
       <div class="project-desc">Designed data ingestion and feature engineering pipelines for ML model training on Vertex AI.</div>
     </div>
   </div>
-</section>
+</div>
 
-<hr style="margin-top:60px"/>
-
-<section id="ai">
-  <div class="section-label">// ai-powered</div>
-  <div class="section-title">Resume Summarizer</div>
-  <div class="ai-box">
-    <div class="ai-title">Get an instant AI summary of my background</div>
-    <div class="ai-sub">Click below and Claude will generate a professional summary of my experience, skills, and certifications.</div>
-    <div class="ai-result" style="display:block; margin-top:0;">
-Akshai Narayanappa is a skilled Data Engineer with 3+ years of experience building scalable data pipelines and cloud-native solutions on Google Cloud Platform. He specializes in Python, SQL, BigQuery, and Apache Airflow, with a strong track record of designing and optimizing ETL workflows for large-scale data processing. Certified as both a GCP Associate Cloud Engineer and GCP Professional ML Engineer, Akshai brings deep expertise in cloud architecture and ML infrastructure. Currently contributing at Prodapt Solutions in Bangalore, he is passionate about building reliable, efficient data systems that drive business insights.
-    </div>
-  </div>
-</section>
-
-<hr style="margin-top:60px"/>
-
-<section id="contact">
+<!-- CONTACT -->
+<div class="page" id="page-contact">
   <div class="section-label">// contact</div>
   <div class="section-title">Get In Touch</div>
-  <div class="contact-row">
-    <div class="contact-item"><span class="ic">@</span> akshai.narayanappa@gmail.com</div>
-    <div class="contact-item"><span class="ic">#</span> Bangalore, India</div>
-    <div class="contact-item"><span class="ic">&gt;</span> Open to opportunities</div>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-icon">@</div>
+      <div class="contact-label">Email</div>
+      <div class="contact-value">akshai.narayanappa@gmail.com</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">#</div>
+      <div class="contact-label">Location</div>
+      <div class="contact-value">Bangalore, India</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">&gt;</div>
+      <div class="contact-label">Status</div>
+      <div class="contact-value">Open to opportunities</div>
+    </div>
   </div>
-</section>
+</div>
 
-  <div class="footer">Built by Akshai Narayanappa</div>
+<div class="footer">Built by Akshai Narayanappa</div>
 
-
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.getElementById('nav-' + name).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+</script>
 </body>
 </html>
