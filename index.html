@@ -1,4 +1,8 @@
-<!-- ✅ COPY THIS ENTIRE CODE AND PASTE INTO index.html ON GITHUB -->
+<script>
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+</script><!-- ✅ COPY THIS ENTIRE CODE AND PASTE INTO index.html ON GITHUB -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,7 +87,7 @@
   <div class="hero-title">Building scalable data systems on GCP</div>
   <p class="hero-bio">3+ years crafting ETL pipelines, BigQuery data warehouses, and Airflow orchestrations. GCP Certified. Based in Bangalore, India.</p>
   <div class="btn-row">
-    <button class="btn-primary" onclick="scrollTo('ai')">Summarize My Resume ↓</button>
+    <button class="btn-primary" onclick="scrollTo('about')">View My Work ↓</button>
     <a class="btn-secondary" href="mailto:akshai.narayanappa@gmail.com">Contact Me</a>
   </div>
 </div>
@@ -166,10 +170,9 @@
   <div class="ai-box">
     <div class="ai-title">Get an instant AI summary of my background</div>
     <div class="ai-sub">Click below and Claude will generate a professional summary of my experience, skills, and certifications.</div>
-    <button class="btn-primary" onclick="summarize()" id="summarize-btn">✦ Summarize My Resume</button>
-    <div class="ai-loading" id="ai-loading">// analyzing resume data...</div>
-    <div class="ai-error" id="ai-error">Something went wrong. Please try again.</div>
-    <div class="ai-result" id="ai-result"></div>
+    <div class="ai-result" style="display:block; margin-top:0;">
+Akshai Narayanappa is a skilled Data Engineer with 3+ years of experience building scalable data pipelines and cloud-native solutions on Google Cloud Platform. He specializes in Python, SQL, BigQuery, and Apache Airflow, with a strong track record of designing and optimizing ETL workflows for large-scale data processing. Certified as both a GCP Associate Cloud Engineer and GCP Professional ML Engineer, Akshai brings deep expertise in cloud architecture and ML infrastructure. Currently contributing at Prodapt Solutions in Bangalore, he is passionate about building reliable, efficient data systems that drive business insights.
+    </div>
   </div>
 </section>
 
@@ -185,68 +188,8 @@
   </div>
 </section>
 
-<div class="footer">Built by Akshai Narayanappa · Powered by Claude AI</div>
+  <div class="footer">Built by Akshai Narayanappa</div>
 
-<script>
-  function scrollTo(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-  }
 
-  const RESUME = `
-Name: Akshai Narayanappa
-Role: Data Engineer at Prodapt Solutions, Bangalore
-Experience: 3+ years
-Education: B.Tech CSE, GITAM University (2022)
-Skills: Python, SQL, GCP, BigQuery, Apache Airflow, ETL Pipelines, Data Warehousing, Dataflow, Pub/Sub, Cloud Storage
-Certifications: GCP Associate Cloud Engineer, GCP Professional ML Engineer
-Highlights:
-- Designed and maintained large-scale ETL pipelines on GCP
-- Optimized BigQuery schemas and queries for reporting dashboards
-- Built Airflow DAGs for complex multi-step pipeline orchestration
-- Worked across Cloud Storage, Dataflow, and Pub/Sub services
-- Contributed to ML pipeline infrastructure on Vertex AI
-`;
-
-  async function summarize() {
-    const btn = document.getElementById('summarize-btn');
-    const loading = document.getElementById('ai-loading');
-    const result = document.getElementById('ai-result');
-    const error = document.getElementById('ai-error');
-
-    btn.disabled = true;
-    btn.textContent = 'Generating...';
-    loading.style.display = 'block';
-    result.style.display = 'none';
-    error.style.display = 'none';
-
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': 'YOUR_API_KEY_HERE',
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system: 'You are a professional career advisor. Given a resume, write a compelling, concise 4-5 sentence summary highlighting the candidate strengths, technical expertise, and career trajectory. Write in third person.',
-          messages: [{ role: 'user', content: 'Summarize this resume:\n' + RESUME }]
-        })
-      });
-      const data = await res.json();
-      const text = data.content?.find(b => b.type === 'text')?.text || '';
-      result.textContent = text;
-      result.style.display = 'block';
-    } catch(e) {
-      error.style.display = 'block';
-    }
-
-    btn.disabled = false;
-    btn.textContent = '✦ Summarize My Resume';
-    loading.style.display = 'none';
-  }
-</script>
 </body>
 </html>
