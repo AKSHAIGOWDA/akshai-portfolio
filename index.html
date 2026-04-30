@@ -1,5 +1,5 @@
 <script>
-  function scrollTo(id) {
+  function goTo(id) {
     document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
   }
 </script><!-- ✅ COPY THIS ENTIRE CODE AND PASTE INTO index.html ON GITHUB -->
@@ -72,12 +72,12 @@
 <body>
 
 <nav>
-  <div class="logo">&gt; akshai.dev</div>
+  <div class="logo">Akshai Narayanappa</div>
   <div class="nav-links">
-    <a onclick="scrollTo('about')">about</a>
-    <a onclick="scrollTo('experience')">experience</a>
-    <a onclick="scrollTo('projects')">projects</a>
-    <a onclick="scrollTo('contact')">contact</a>
+    <a onclick="goTo('about')">about</a>
+    <a onclick="goTo('experience')">experience</a>
+    <a onclick="goTo('projects')">projects</a>
+    <a onclick="goTo('contact')">contact</a>
   </div>
 </nav>
 
@@ -87,7 +87,7 @@
   <div class="hero-title">Building scalable data systems on GCP</div>
   <p class="hero-bio">3+ years crafting ETL pipelines, BigQuery data warehouses, and Airflow orchestrations. GCP Certified. Based in Bangalore, India.</p>
   <div class="btn-row">
-    <button class="btn-primary" onclick="scrollTo('about')">View My Work ↓</button>
+    <button class="btn-primary" onclick="goTo('about')">View My Work ↓</button>
     <a class="btn-secondary" href="mailto:akshai.narayanappa@gmail.com">Contact Me</a>
   </div>
 </div>
