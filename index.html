@@ -1,4 +1,3 @@
-<!-- ✅ COPY THIS ENTIRE CODE AND PASTE INTO index.html ON GITHUB -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,230 +5,284 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Akshai Narayanappa — Data Engineer</title>
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { background:#0a0e14; color:#e8f0f8; font-family:'Courier New',monospace; min-height:100vh; }
+  body { background:#f8f9fb; color:#1a202c; font-family:'Inter',sans-serif; min-height:100vh; }
   a { color:inherit; text-decoration:none; }
 
-  nav { display:flex; justify-content:space-between; align-items:center; padding:18px 40px; border-bottom:1px solid #1e2d42; background:#0a0e14; position:sticky; top:0; z-index:10; }
-  .logo { color:#00ff99; font-weight:700; font-size:16px; cursor:pointer; }
-  .nav-links { display:flex; gap:24px; }
-  .nav-links a { color:#6b8aaa; font-size:13px; cursor:pointer; letter-spacing:0.04em; padding:6px 12px; border-radius:4px; border:1px solid transparent; transition:all 0.2s; }
-  .nav-links a:hover { color:#00ff99; border-color:#1e2d42; }
-  .nav-links a.active { color:#00ff99; border-color:#00ff99; }
+  /* NAV */
+  nav { background:#fff; border-bottom:1px solid #e2e8f0; padding:0 48px; display:flex; justify-content:space-between; align-items:center; height:64px; position:sticky; top:0; z-index:10; }
+  .logo { font-size:16px; font-weight:700; color:#1a202c; cursor:pointer; }
+  .logo span { color:#2563eb; }
+  .nav-links { display:flex; gap:4px; }
+  .nav-links a { color:#64748b; font-size:14px; cursor:pointer; padding:6px 14px; border-radius:6px; font-weight:500; transition:all 0.15s; }
+  .nav-links a:hover { color:#1a202c; background:#f1f5f9; }
+  .nav-links a.active { color:#2563eb; background:#eff6ff; }
 
-  .page { display:none; max-width:860px; margin:0 auto; padding:60px 40px; }
+  /* PAGES */
+  .page { display:none; max-width:900px; margin:0 auto; padding:56px 40px 80px; }
   .page.active { display:block; }
 
-  .section-label { color:#00ff99; font-size:11px; letter-spacing:0.18em; margin-bottom:8px; text-transform:uppercase; }
-  .section-title { font-size:28px; font-weight:700; margin-bottom:32px; }
+  .page-header { margin-bottom:40px; }
+  .page-label { font-size:13px; font-weight:600; color:#2563eb; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:8px; }
+  .page-title { font-size:32px; font-weight:700; color:#1a202c; }
 
   /* HOME */
-  .hero-tag { color:#00ff99; font-size:13px; letter-spacing:0.12em; margin-bottom:12px; }
-  .hero h1 { font-size:48px; font-weight:700; margin-bottom:8px; letter-spacing:-0.02em; }
-  .hero-subtitle { font-size:20px; color:#6b8aaa; margin-bottom:24px; }
-  .hero-bio { font-size:15px; color:#6b8aaa; line-height:1.8; max-width:600px; margin-bottom:36px; }
+  .hero-wrap { display:flex; align-items:flex-start; gap:40px; margin-bottom:48px; }
+  .avatar { width:88px; height:88px; border-radius:50%; background:linear-gradient(135deg,#2563eb,#1d4ed8); display:flex; align-items:center; justify-content:center; font-size:28px; font-weight:700; color:#fff; flex-shrink:0; }
+  .hero-text h1 { font-size:36px; font-weight:700; color:#1a202c; margin-bottom:6px; }
+  .hero-role { font-size:18px; color:#2563eb; font-weight:600; margin-bottom:12px; }
+  .hero-bio { font-size:15px; color:#475569; line-height:1.8; max-width:580px; margin-bottom:24px; }
   .btn-row { display:flex; gap:12px; flex-wrap:wrap; }
-  .btn-primary { background:#00ff99; color:#000; border:none; padding:10px 24px; border-radius:6px; font-family:inherit; font-weight:700; font-size:13px; cursor:pointer; }
-  .btn-primary:hover { background:#00cc7a; }
-  .btn-secondary { background:transparent; color:#00ff99; border:1px solid #00ff99; padding:10px 24px; border-radius:6px; font-family:inherit; font-weight:700; font-size:13px; cursor:pointer; }
-  .btn-secondary:hover { background:#00ff9911; }
-  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-top:48px; }
-  .stat { background:#111720; border:1px solid #1e2d42; border-radius:8px; padding:16px 20px; }
-  .stat-num { font-size:28px; font-weight:700; color:#00ff99; }
-  .stat-label { font-size:12px; color:#6b8aaa; margin-top:4px; }
+  .btn-primary { background:#2563eb; color:#fff; border:none; padding:10px 24px; border-radius:8px; font-family:inherit; font-weight:600; font-size:14px; cursor:pointer; transition:background 0.15s; }
+  .btn-primary:hover { background:#1d4ed8; }
+  .btn-secondary { background:#fff; color:#2563eb; border:1.5px solid #2563eb; padding:10px 24px; border-radius:8px; font-family:inherit; font-weight:600; font-size:14px; cursor:pointer; transition:all 0.15s; }
+  .btn-secondary:hover { background:#eff6ff; }
+
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:16px; margin-top:8px; }
+  .stat { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:20px 24px; }
+  .stat-num { font-size:30px; font-weight:700; color:#2563eb; }
+  .stat-label { font-size:13px; color:#64748b; margin-top:4px; font-weight:500; }
+
+  .summary-box { background:#eff6ff; border-left:4px solid #2563eb; border-radius:0 10px 10px 0; padding:20px 24px; margin-bottom:40px; font-size:14px; color:#1e3a6e; line-height:1.8; }
 
   /* ABOUT */
-  .skill-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; margin-bottom:32px; }
-  .skill-chip { background:#111720; border:1px solid #1e2d42; border-radius:6px; padding:10px 14px; font-size:13px; color:#6b8aaa; }
-  .skill-cat { color:#00ff99; font-weight:700; font-size:11px; display:block; margin-bottom:2px; letter-spacing:0.08em; }
-  .cert-row { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:32px; }
-  .cert-badge { background:#1a2235; border:1px solid #00cc7a; border-radius:20px; padding:6px 14px; font-size:12px; color:#00cc7a; }
-  .about-bio { font-size:14px; color:#6b8aaa; line-height:1.9; max-width:640px; }
-  .hobbies { display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
-  .hobby { background:#111720; border:1px solid #1e2d42; border-radius:20px; padding:5px 14px; font-size:12px; color:#6b8aaa; }
+  .skill-section { margin-bottom:40px; }
+  .sub-title { font-size:17px; font-weight:700; color:#1a202c; margin-bottom:16px; }
+  .skill-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; }
+  .skill-chip { background:#fff; border:1px solid #e2e8f0; border-radius:8px; padding:12px 16px; font-size:13px; color:#334155; font-weight:500; display:flex; align-items:center; gap:8px; }
+  .skill-dot { width:8px; height:8px; border-radius:50%; background:#2563eb; flex-shrink:0; }
+  .cert-row { display:flex; gap:10px; flex-wrap:wrap; }
+  .cert-badge { background:#fff; border:1.5px solid #2563eb; border-radius:8px; padding:8px 16px; font-size:13px; color:#2563eb; font-weight:600; }
+  .hobby-row { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+  .hobby { background:#fff; border:1px solid #e2e8f0; border-radius:20px; padding:6px 16px; font-size:13px; color:#475569; }
+  .about-bio { font-size:14px; color:#475569; line-height:1.9; max-width:680px; }
 
   /* EXPERIENCE */
-  .exp-card { background:#111720; border:1px solid #1e2d42; border-radius:10px; padding:24px; margin-bottom:16px; }
-  .exp-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
-  .exp-company { color:#00ff99; font-size:13px; font-weight:700; margin-bottom:4px; }
-  .exp-role { font-size:17px; font-weight:700; }
-  .exp-date { color:#3d5470; font-size:12px; text-align:right; line-height:1.6; }
-  .exp-dot { color:#6b8aaa; font-size:13px; margin-bottom:6px; padding-left:4px; }
+  .timeline { position:relative; padding-left:24px; border-left:2px solid #e2e8f0; }
+  .timeline-item { margin-bottom:36px; position:relative; }
+  .timeline-dot { width:12px; height:12px; border-radius:50%; background:#2563eb; border:2px solid #fff; box-shadow:0 0 0 2px #2563eb; position:absolute; left:-30px; top:4px; }
+  .exp-card { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:24px 28px; }
+  .exp-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; }
+  .exp-company { font-size:13px; font-weight:700; color:#2563eb; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px; }
+  .exp-role { font-size:17px; font-weight:700; color:#1a202c; }
+  .exp-badge { background:#eff6ff; color:#2563eb; font-size:12px; font-weight:600; padding:4px 12px; border-radius:20px; white-space:nowrap; }
+  .exp-dot { font-size:13px; color:#475569; margin-bottom:6px; padding-left:16px; position:relative; }
+  .exp-dot::before { content:'•'; position:absolute; left:4px; color:#2563eb; }
+  .tag-row { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+  .tag { background:#f1f5f9; color:#475569; font-size:11px; font-weight:600; padding:4px 10px; border-radius:4px; }
 
   /* PROJECTS */
-  .project-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
-  .project-card { background:#111720; border:1px solid #1e2d42; border-radius:10px; padding:22px; transition:border-color 0.2s; }
-  .project-card:hover { border-color:#00ff9955; }
-  .project-tag { color:#00ff99; font-size:11px; letter-spacing:0.1em; margin-bottom:8px; }
-  .project-title { font-size:15px; font-weight:700; margin-bottom:8px; }
-  .project-desc { font-size:13px; color:#6b8aaa; line-height:1.7; }
+  .project-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+  .project-card { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:24px; transition:box-shadow 0.15s,border-color 0.15s; }
+  .project-card:hover { border-color:#2563eb; box-shadow:0 4px 16px #2563eb11; }
+  .project-tag-row { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+  .project-tag { background:#eff6ff; color:#2563eb; font-size:11px; font-weight:700; padding:3px 10px; border-radius:4px; }
+  .project-title { font-size:16px; font-weight:700; color:#1a202c; margin-bottom:8px; }
+  .project-desc { font-size:13px; color:#64748b; line-height:1.7; }
 
   /* CONTACT */
-  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; margin-bottom:40px; }
-  .contact-card { background:#111720; border:1px solid #1e2d42; border-radius:10px; padding:22px; }
-  .contact-icon { color:#00ff99; font-size:20px; margin-bottom:10px; }
-  .contact-label { font-size:11px; color:#3d5470; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:4px; }
-  .contact-value { font-size:14px; color:#e8f0f8; }
-  .contact-form { background:#111720; border:1px solid #1e2d42; border-radius:10px; padding:28px; }
-  .contact-form h3 { font-size:16px; margin-bottom:20px; color:#e8f0f8; }
-  .form-group { margin-bottom:16px; }
-  .form-group label { display:block; font-size:12px; color:#6b8aaa; margin-bottom:6px; letter-spacing:0.06em; }
-  .form-group input, .form-group textarea { width:100%; background:#0a0e14; border:1px solid #1e2d42; border-radius:6px; padding:10px 14px; color:#e8f0f8; font-family:inherit; font-size:13px; outline:none; }
-  .form-group input:focus, .form-group textarea:focus { border-color:#00ff99; }
-  .form-group textarea { height:100px; resize:vertical; }
+  .contact-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; margin-bottom:36px; }
+  .contact-card { background:#fff; border:1px solid #e2e8f0; border-radius:12px; padding:22px; }
+  .contact-icon { width:36px; height:36px; border-radius:8px; background:#eff6ff; display:flex; align-items:center; justify-content:center; font-size:16px; margin-bottom:12px; }
+  .contact-label { font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px; }
+  .contact-value { font-size:14px; color:#1a202c; font-weight:500; }
 
-  .footer { text-align:center; padding:32px; color:#3d5470; font-size:12px; border-top:1px solid #1e2d42; margin-top:60px; }
+  .divider { border:none; border-top:1px solid #e2e8f0; margin:40px 0; }
+  .footer { text-align:center; padding:28px; color:#94a3b8; font-size:13px; border-top:1px solid #e2e8f0; background:#fff; }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo" onclick="showPage('home')">Akshai Narayanappa</div>
+  <div class="logo" onclick="showPage('home')">Akshai <span>Narayanappa</span></div>
   <div class="nav-links">
-    <a onclick="showPage('home')" id="nav-home" class="active">home</a>
-    <a onclick="showPage('about')" id="nav-about">about</a>
-    <a onclick="showPage('experience')" id="nav-experience">experience</a>
-    <a onclick="showPage('projects')" id="nav-projects">projects</a>
-    <a onclick="showPage('contact')" id="nav-contact">contact</a>
+    <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
+    <a onclick="showPage('about')" id="nav-about">About</a>
+    <a onclick="showPage('experience')" id="nav-experience">Experience</a>
+    <a onclick="showPage('projects')" id="nav-projects">Projects</a>
+    <a onclick="showPage('contact')" id="nav-contact">Contact</a>
   </div>
 </nav>
 
-<!-- HOME -->
-<div class="page active hero" id="page-home">
-  <div class="hero-tag">// data engineer</div>
-  <h1>Akshai Narayanappa</h1>
-  <div class="hero-subtitle">Building scalable data systems on GCP</div>
-  <p class="hero-bio">3+ years crafting ETL pipelines, BigQuery data warehouses, and Airflow orchestrations. GCP Certified. Based in Bangalore, India.</p>
-  <div class="btn-row">
-    <button class="btn-primary" onclick="showPage('projects')">View My Work →</button>
-    <button class="btn-secondary" onclick="showPage('contact')">Contact Me</button>
+<div class="page active" id="page-home">
+  <div class="hero-wrap">
+    <div class="avatar">AN</div>
+    <div class="hero-text">
+      <h1>Akshai Narayanappa</h1>
+      <div class="hero-role">Data Engineer · GCP Specialist</div>
+      <p class="hero-bio">3+ years building scalable ETL pipelines, BigQuery data warehouses, and Airflow orchestrations on Google Cloud Platform. Dual GCP Certified. Based in Bangalore, India.</p>
+      <div class="btn-row">
+        <button class="btn-primary" onclick="showPage('projects')">View My Work →</button>
+        <button class="btn-secondary" onclick="showPage('contact')">Get In Touch</button>
+      </div>
+    </div>
   </div>
+
+  <div class="summary-box">
+    Akshai is a results-driven Data Engineer with expertise in designing cloud-native data solutions on GCP. He brings deep hands-on experience with BigQuery, Apache Airflow, and Python-based ETL systems, along with dual GCP certifications that validate his cloud and ML engineering capabilities.
+  </div>
+
   <div class="stats">
     <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
     <div class="stat"><div class="stat-num">2</div><div class="stat-label">GCP Certifications</div></div>
-    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Tech Skills</div></div>
-    <div class="stat"><div class="stat-num">3</div><div class="stat-label">Projects</div></div>
+    <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Technologies</div></div>
+    <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Projects Delivered</div></div>
   </div>
 </div>
 
-<!-- ABOUT -->
 <div class="page" id="page-about">
-  <div class="section-label">// about</div>
-  <div class="section-title">Skills & Tech Stack</div>
-  <div class="skill-grid">
-    <div class="skill-chip"><span class="skill-cat">Language</span>Python</div>
-    <div class="skill-chip"><span class="skill-cat">Language</span>SQL</div>
-    <div class="skill-chip"><span class="skill-cat">Cloud</span>GCP</div>
-    <div class="skill-chip"><span class="skill-cat">Database</span>BigQuery</div>
-    <div class="skill-chip"><span class="skill-cat">Orchestration</span>Apache Airflow</div>
-    <div class="skill-chip"><span class="skill-cat">Concept</span>ETL Pipelines</div>
-    <div class="skill-chip"><span class="skill-cat">Concept</span>Data Warehousing</div>
-    <div class="skill-chip"><span class="skill-cat">Platform</span>Dataflow</div>
-    <div class="skill-chip"><span class="skill-cat">Platform</span>Pub/Sub</div>
-    <div class="skill-chip"><span class="skill-cat">Platform</span>Cloud Storage</div>
+  <div class="page-header">
+    <div class="page-label">About</div>
+    <div class="page-title">Skills & Background</div>
   </div>
 
-  <div class="section-label">// certifications</div>
-  <div class="section-title" style="font-size:20px">Credentials</div>
-  <div class="cert-row">
-    <span class="cert-badge">✓ GCP Associate Cloud Engineer</span>
-    <span class="cert-badge">✓ GCP Professional ML Engineer</span>
-    <span class="cert-badge">✓ B.Tech CSE — GITAM University 2022</span>
+  <div class="skill-section">
+    <div class="sub-title">Tech Stack</div>
+    <div class="skill-grid">
+      <div class="skill-chip"><span class="skill-dot"></span>Python</div>
+      <div class="skill-chip"><span class="skill-dot"></span>SQL</div>
+      <div class="skill-chip"><span class="skill-dot"></span>Google Cloud Platform</div>
+      <div class="skill-chip"><span class="skill-dot"></span>BigQuery</div>
+      <div class="skill-chip"><span class="skill-dot"></span>Apache Airflow</div>
+      <div class="skill-chip"><span class="skill-dot"></span>ETL Pipelines</div>
+      <div class="skill-chip"><span class="skill-dot"></span>Data Warehousing</div>
+      <div class="skill-chip"><span class="skill-dot"></span>Cloud Dataflow</div>
+      <div class="skill-chip"><span class="skill-dot"></span>Pub/Sub</div>
+      <div class="skill-chip"><span class="skill-dot"></span>Cloud Storage</div>
+    </div>
   </div>
 
-  <div class="section-label" style="margin-top:32px">// bio</div>
-  <div class="section-title" style="font-size:20px">About Me</div>
-  <p class="about-bio">Akshai Narayanappa is a Data Engineer at Prodapt Solutions, Bangalore with 3+ years of experience building scalable data pipelines and cloud-native solutions on GCP. He specializes in Python, SQL, BigQuery, and Apache Airflow, with a strong track record of designing and optimizing ETL workflows for large-scale data processing.</p>
-  <div class="hobbies">
-    <span class="hobby">⚽ Football</span>
-    <span class="hobby">🏸 Badminton</span>
-    <span class="hobby">🎵 Music</span>
-    <span class="hobby">📺 Anime</span>
-    <span class="hobby">🍛 South Indian Food</span>
+  <hr class="divider"/>
+
+  <div class="skill-section">
+    <div class="sub-title">Certifications</div>
+    <div class="cert-row">
+      <div class="cert-badge">✓ GCP Associate Cloud Engineer</div>
+      <div class="cert-badge">✓ GCP Professional ML Engineer</div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="skill-section">
+    <div class="sub-title">About Me</div>
+    <p class="about-bio">I am a Data Engineer at Prodapt Solutions, Bangalore with 3+ years of experience building scalable data pipelines and cloud-native solutions on GCP. I specialize in Python, SQL, BigQuery, and Apache Airflow, with a strong track record of designing and optimizing ETL workflows for large-scale data processing. I hold a B.Tech in Computer Science from GITAM University (2022).</p>
+    <div class="hobby-row">
+      <span class="hobby">⚽ Football</span>
+      <span class="hobby">🏸 Badminton</span>
+      <span class="hobby">🎵 Music</span>
+      <span class="hobby">📺 Anime & Series</span>
+      <span class="hobby">🍛 South Indian Food</span>
+    </div>
   </div>
 </div>
 
-<!-- EXPERIENCE -->
 <div class="page" id="page-experience">
-  <div class="section-label">// experience</div>
-  <div class="section-title">Work History</div>
-  <div class="exp-card">
-    <div class="exp-header">
-      <div>
-        <div class="exp-company">Prodapt Solutions</div>
-        <div class="exp-role">Data Engineer</div>
-      </div>
-      <div class="exp-date">2022 – Present<br/>Bangalore, India</div>
-    </div>
-    <div class="exp-dot">— Designed and maintained large-scale ETL pipelines on GCP</div>
-    <div class="exp-dot">— Optimized BigQuery schemas and queries for reporting dashboards</div>
-    <div class="exp-dot">— Built Airflow DAGs for complex multi-step pipeline orchestration</div>
-    <div class="exp-dot">— Worked across Cloud Storage, Dataflow, and Pub/Sub services</div>
-    <div class="exp-dot">— Contributed to ML pipeline infrastructure on Vertex AI</div>
+  <div class="page-header">
+    <div class="page-label">Experience</div>
+    <div class="page-title">Work History</div>
   </div>
 
-  <div class="section-label" style="margin-top:40px">// education</div>
-  <div class="section-title" style="font-size:20px">Education</div>
-  <div class="exp-card">
-    <div class="exp-header">
-      <div>
-        <div class="exp-company">GITAM University</div>
-        <div class="exp-role">B.Tech — Computer Science & Engineering</div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-company">Prodapt Solutions</div>
+            <div class="exp-role">Data Engineer</div>
+          </div>
+          <div class="exp-badge">2022 – Present</div>
+        </div>
+        <div class="exp-dot">Designed and maintained large-scale ETL pipelines on GCP</div>
+        <div class="exp-dot">Optimized BigQuery schemas and queries for reporting dashboards</div>
+        <div class="exp-dot">Built Airflow DAGs for complex multi-step pipeline orchestration</div>
+        <div class="exp-dot">Worked across Cloud Storage, Dataflow, and Pub/Sub services</div>
+        <div class="exp-dot">Contributed to ML pipeline infrastructure on Vertex AI</div>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">BigQuery</span><span class="tag">Airflow</span><span class="tag">GCP</span><span class="tag">SQL</span>
+        </div>
       </div>
-      <div class="exp-date">2018 – 2022<br/>India</div>
     </div>
-    <div class="exp-dot">— Graduated with a degree in Computer Science & Engineering</div>
-    <div class="exp-dot">— Built foundation in algorithms, databases, and software engineering</div>
+  </div>
+
+  <hr class="divider"/>
+  <div class="page-label">Education</div>
+  <div style="font-size:24px;font-weight:700;color:#1a202c;margin:8px 0 24px">Academic Background</div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="exp-card">
+        <div class="exp-top">
+          <div>
+            <div class="exp-company">GITAM University</div>
+            <div class="exp-role">B.Tech — Computer Science & Engineering</div>
+          </div>
+          <div class="exp-badge">2018 – 2022</div>
+        </div>
+        <div class="exp-dot">Graduated with a degree in Computer Science & Engineering</div>
+        <div class="exp-dot">Built strong foundation in algorithms, databases, and software engineering</div>
+      </div>
+    </div>
   </div>
 </div>
 
-<!-- PROJECTS -->
 <div class="page" id="page-projects">
-  <div class="section-label">// projects</div>
-  <div class="section-title">Selected Work</div>
+  <div class="page-header">
+    <div class="page-label">Projects</div>
+    <div class="page-title">Selected Work</div>
+  </div>
   <div class="project-grid">
     <div class="project-card">
-      <div class="project-tag">GCP · BigQuery</div>
+      <div class="project-tag-row"><span class="project-tag">GCP</span><span class="project-tag">BigQuery</span></div>
       <div class="project-title">Data Warehouse Migration</div>
-      <div class="project-desc">Migrated on-prem data warehouse to BigQuery, improving query performance and significantly reducing infrastructure cost.</div>
+      <div class="project-desc">Migrated on-prem data warehouse to BigQuery, improving query performance and significantly reducing infrastructure cost at scale.</div>
     </div>
     <div class="project-card">
-      <div class="project-tag">Airflow · Python</div>
+      <div class="project-tag-row"><span class="project-tag">Airflow</span><span class="project-tag">Python</span></div>
       <div class="project-title">ETL Pipeline Automation</div>
-      <div class="project-desc">Built Airflow DAGs to orchestrate complex multi-source ETL workflows with robust error handling and alerting.</div>
+      <div class="project-desc">Built Airflow DAGs to orchestrate complex multi-source ETL workflows with robust error handling, retries, and alerting.</div>
     </div>
     <div class="project-card">
-      <div class="project-tag">GCP · Vertex AI</div>
+      <div class="project-tag-row"><span class="project-tag">Vertex AI</span><span class="project-tag">GCP</span></div>
       <div class="project-title">ML Data Pipeline</div>
-      <div class="project-desc">Designed data ingestion and feature engineering pipelines for ML model training on Vertex AI.</div>
+      <div class="project-desc">Designed data ingestion and feature engineering pipelines for ML model training and deployment on Vertex AI.</div>
     </div>
   </div>
 </div>
 
-<!-- CONTACT -->
 <div class="page" id="page-contact">
-  <div class="section-label">// contact</div>
-  <div class="section-title">Get In Touch</div>
+  <div class="page-header">
+    <div class="page-label">Contact</div>
+    <div class="page-title">Get In Touch</div>
+  </div>
   <div class="contact-grid">
     <div class="contact-card">
-      <div class="contact-icon">@</div>
+      <div class="contact-icon">✉</div>
       <div class="contact-label">Email</div>
       <div class="contact-value">akshai.narayanappa@gmail.com</div>
     </div>
     <div class="contact-card">
-      <div class="contact-icon">#</div>
+      <div class="contact-icon">📍</div>
       <div class="contact-label">Location</div>
       <div class="contact-value">Bangalore, India</div>
     </div>
     <div class="contact-card">
-      <div class="contact-icon">&gt;</div>
+      <div class="contact-icon">💼</div>
       <div class="contact-label">Status</div>
-      <div class="contact-value">Open to opportunities</div>
+      <div class="contact-value">Open to Opportunities</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-icon">🎓</div>
+      <div class="contact-label">Education</div>
+      <div class="contact-value">B.Tech CSE — GITAM 2022</div>
     </div>
   </div>
 </div>
 
-<div class="footer">Built by Akshai Narayanappa</div>
+<div class="footer">© 2026 Akshai Narayanappa · Data Engineer · Bangalore, India</div>
 
 <script>
   function showPage(name) {
@@ -237,7 +290,7 @@
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
     document.getElementById('page-' + name).classList.add('active');
     document.getElementById('nav-' + name).classList.add('active');
-    window.scrollTo(0, 0);
+    window.scrollTo(0,0);
   }
 </script>
 </body>
