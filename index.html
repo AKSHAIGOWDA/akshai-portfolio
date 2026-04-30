@@ -1,1 +1,252 @@
+<!-- ✅ COPY THIS ENTIRE CODE AND PASTE INTO index.html ON GITHUB -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Akshai Narayanappa — Data Engineer</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0e14; color: #e8f0f8; font-family: 'Courier New', monospace; }
+  a { color: inherit; text-decoration: none; }
 
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; border-bottom: 1px solid #1e2d42; position: sticky; top: 0; background: #0a0e14; z-index: 10; }
+  .logo { color: #00ff99; font-weight: 700; font-size: 16px; letter-spacing: 0.05em; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { color: #6b8aaa; font-size: 13px; cursor: pointer; letter-spacing: 0.04em; }
+  .nav-links a:hover { color: #00ff99; }
+
+  .hero { padding: 80px 40px 60px; max-width: 860px; margin: 0 auto; }
+  .hero-tag { color: #00ff99; font-size: 13px; letter-spacing: 0.12em; margin-bottom: 12px; }
+  .hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
+  .hero-title { font-size: 20px; color: #6b8aaa; margin-bottom: 24px; }
+  .hero-bio { font-size: 15px; color: #6b8aaa; line-height: 1.8; max-width: 600px; margin-bottom: 36px; }
+  .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: #00ff99; color: #000; border: none; padding: 10px 24px; border-radius: 6px; font-family: inherit; font-weight: 700; font-size: 13px; cursor: pointer; letter-spacing: 0.05em; }
+  .btn-primary:hover { background: #00cc7a; }
+  .btn-secondary { background: transparent; color: #00ff99; border: 1px solid #00ff99; padding: 10px 24px; border-radius: 6px; font-family: inherit; font-weight: 700; font-size: 13px; cursor: pointer; letter-spacing: 0.05em; }
+  .btn-secondary:hover { background: #00ff9911; }
+
+  hr { border: none; border-top: 1px solid #1e2d42; margin: 0 40px; }
+  section { max-width: 860px; margin: 0 auto; padding: 60px 40px 0; }
+  .section-label { color: #00ff99; font-size: 11px; letter-spacing: 0.18em; margin-bottom: 8px; text-transform: uppercase; }
+  .section-title { font-size: 24px; font-weight: 700; margin-bottom: 32px; }
+
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .skill-chip { background: #111720; border: 1px solid #1e2d42; border-radius: 6px; padding: 10px 14px; font-size: 13px; color: #6b8aaa; }
+  .skill-cat { color: #00ff99; font-weight: 700; font-size: 12px; display: block; margin-bottom: 2px; }
+  .cert-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+  .cert-badge { background: #1a2235; border: 1px solid #00cc7a; border-radius: 20px; padding: 6px 14px; font-size: 12px; color: #00cc7a; letter-spacing: 0.04em; }
+
+  .exp-card { background: #111720; border: 1px solid #1e2d42; border-radius: 10px; padding: 20px 24px; margin-bottom: 14px; }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .exp-company { color: #00ff99; font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .exp-role { font-size: 16px; font-weight: 700; }
+  .exp-date { color: #3d5470; font-size: 12px; text-align: right; }
+  .exp-dot { color: #6b8aaa; font-size: 13px; margin-bottom: 4px; padding-left: 12px; }
+
+  .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .project-card { background: #111720; border: 1px solid #1e2d42; border-radius: 10px; padding: 20px 22px; }
+  .project-tag { color: #00ff99; font-size: 11px; letter-spacing: 0.12em; margin-bottom: 8px; }
+  .project-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .project-desc { font-size: 13px; color: #6b8aaa; line-height: 1.7; }
+
+  .ai-box { background: #111720; border: 1px solid #00cc7a; border-radius: 12px; padding: 32px; text-align: center; }
+  .ai-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .ai-sub { font-size: 14px; color: #6b8aaa; margin-bottom: 24px; line-height: 1.7; }
+  .ai-result { background: #0a1a10; border: 1px solid #00cc7a; border-radius: 8px; padding: 20px 22px; text-align: left; font-size: 13px; color: #a0e8c0; line-height: 1.8; margin-top: 20px; white-space: pre-wrap; display: none; }
+  .ai-loading { color: #00cc7a; font-size: 13px; margin-top: 16px; letter-spacing: 0.05em; display: none; }
+  .ai-error { color: #ff6b6b; font-size: 13px; margin-top: 16px; display: none; }
+
+  .contact-row { display: flex; gap: 20px; flex-wrap: wrap; }
+  .contact-item { background: #111720; border: 1px solid #1e2d42; border-radius: 8px; padding: 14px 20px; font-size: 13px; color: #6b8aaa; display: flex; gap: 10px; align-items: center; }
+  .contact-item span.ic { color: #00ff99; }
+
+  .footer { text-align: center; padding: 40px; color: #3d5470; font-size: 12px; margin-top: 60px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">&gt; akshai.dev</div>
+  <div class="nav-links">
+    <a onclick="scrollTo('about')">about</a>
+    <a onclick="scrollTo('experience')">experience</a>
+    <a onclick="scrollTo('projects')">projects</a>
+    <a onclick="scrollTo('contact')">contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">// data engineer</div>
+  <h1>Akshai Narayanappa</h1>
+  <div class="hero-title">Building scalable data systems on GCP</div>
+  <p class="hero-bio">3+ years crafting ETL pipelines, BigQuery data warehouses, and Airflow orchestrations. GCP Certified. Based in Bangalore, India.</p>
+  <div class="btn-row">
+    <button class="btn-primary" onclick="scrollTo('ai')">Summarize My Resume ↓</button>
+    <a class="btn-secondary" href="mailto:akshai.narayanappa@gmail.com">Contact Me</a>
+  </div>
+</div>
+
+<hr/>
+
+<section id="about">
+  <div class="section-label">// about</div>
+  <div class="section-title">Skills & Tech Stack</div>
+  <div class="skill-grid">
+    <div class="skill-chip"><span class="skill-cat">Language</span>Python</div>
+    <div class="skill-chip"><span class="skill-cat">Language</span>SQL</div>
+    <div class="skill-chip"><span class="skill-cat">Cloud</span>GCP</div>
+    <div class="skill-chip"><span class="skill-cat">Database</span>BigQuery</div>
+    <div class="skill-chip"><span class="skill-cat">Orchestration</span>Apache Airflow</div>
+    <div class="skill-chip"><span class="skill-cat">Concept</span>ETL Pipelines</div>
+    <div class="skill-chip"><span class="skill-cat">Concept</span>Data Warehousing</div>
+    <div class="skill-chip"><span class="skill-cat">Platform</span>Dataflow</div>
+    <div class="skill-chip"><span class="skill-cat">Platform</span>Pub/Sub</div>
+    <div class="skill-chip"><span class="skill-cat">Platform</span>Cloud Storage</div>
+  </div>
+  <div class="cert-row">
+    <span class="cert-badge">✓ GCP Associate Cloud Engineer</span>
+    <span class="cert-badge">✓ GCP Professional ML Engineer</span>
+    <span class="cert-badge">✓ B.Tech CSE — GITAM University 2022</span>
+  </div>
+</section>
+
+<hr style="margin-top:60px"/>
+
+<section id="experience">
+  <div class="section-label">// experience</div>
+  <div class="section-title">Work History</div>
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-company">Prodapt Solutions</div>
+        <div class="exp-role">Data Engineer</div>
+      </div>
+      <div class="exp-date">2022 – Present<br/>Bangalore, India</div>
+    </div>
+    <div style="margin-top:12px">
+      <div class="exp-dot">— Designed and maintained large-scale ETL pipelines on GCP</div>
+      <div class="exp-dot">— Optimized BigQuery schemas and queries for reporting dashboards</div>
+      <div class="exp-dot">— Built Airflow DAGs for complex multi-step pipeline orchestration</div>
+      <div class="exp-dot">— Worked across Cloud Storage, Dataflow, and Pub/Sub services</div>
+    </div>
+  </div>
+</section>
+
+<hr style="margin-top:60px"/>
+
+<section id="projects">
+  <div class="section-label">// projects</div>
+  <div class="section-title">Selected Work</div>
+  <div class="project-grid">
+    <div class="project-card">
+      <div class="project-tag">GCP · BigQuery</div>
+      <div class="project-title">Data Warehouse Migration</div>
+      <div class="project-desc">Migrated on-prem data warehouse to BigQuery, improving query performance and reducing cost.</div>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">Airflow · Python</div>
+      <div class="project-title">ETL Pipeline Automation</div>
+      <div class="project-desc">Built Airflow DAGs to orchestrate complex multi-source ETL workflows with error handling.</div>
+    </div>
+    <div class="project-card">
+      <div class="project-tag">GCP · ML</div>
+      <div class="project-title">ML Data Pipeline</div>
+      <div class="project-desc">Designed data ingestion and feature engineering pipelines for ML model training on Vertex AI.</div>
+    </div>
+  </div>
+</section>
+
+<hr style="margin-top:60px"/>
+
+<section id="ai">
+  <div class="section-label">// ai-powered</div>
+  <div class="section-title">Resume Summarizer</div>
+  <div class="ai-box">
+    <div class="ai-title">Get an instant AI summary of my background</div>
+    <div class="ai-sub">Click below and Claude will generate a professional summary of my experience, skills, and certifications.</div>
+    <button class="btn-primary" onclick="summarize()" id="summarize-btn">✦ Summarize My Resume</button>
+    <div class="ai-loading" id="ai-loading">// analyzing resume data...</div>
+    <div class="ai-error" id="ai-error">Something went wrong. Please try again.</div>
+    <div class="ai-result" id="ai-result"></div>
+  </div>
+</section>
+
+<hr style="margin-top:60px"/>
+
+<section id="contact">
+  <div class="section-label">// contact</div>
+  <div class="section-title">Get In Touch</div>
+  <div class="contact-row">
+    <div class="contact-item"><span class="ic">@</span> akshai.narayanappa@gmail.com</div>
+    <div class="contact-item"><span class="ic">#</span> Bangalore, India</div>
+    <div class="contact-item"><span class="ic">&gt;</span> Open to opportunities</div>
+  </div>
+</section>
+
+<div class="footer">Built by Akshai Narayanappa · Powered by Claude AI</div>
+
+<script>
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  const RESUME = `
+Name: Akshai Narayanappa
+Role: Data Engineer at Prodapt Solutions, Bangalore
+Experience: 3+ years
+Education: B.Tech CSE, GITAM University (2022)
+Skills: Python, SQL, GCP, BigQuery, Apache Airflow, ETL Pipelines, Data Warehousing, Dataflow, Pub/Sub, Cloud Storage
+Certifications: GCP Associate Cloud Engineer, GCP Professional ML Engineer
+Highlights:
+- Designed and maintained large-scale ETL pipelines on GCP
+- Optimized BigQuery schemas and queries for reporting dashboards
+- Built Airflow DAGs for complex multi-step pipeline orchestration
+- Worked across Cloud Storage, Dataflow, and Pub/Sub services
+- Contributed to ML pipeline infrastructure on Vertex AI
+`;
+
+  async function summarize() {
+    const btn = document.getElementById('summarize-btn');
+    const loading = document.getElementById('ai-loading');
+    const result = document.getElementById('ai-result');
+    const error = document.getElementById('ai-error');
+
+    btn.disabled = true;
+    btn.textContent = 'Generating...';
+    loading.style.display = 'block';
+    result.style.display = 'none';
+    error.style.display = 'none';
+
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'YOUR_API_KEY_HERE',
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 1000,
+          system: 'You are a professional career advisor. Given a resume, write a compelling, concise 4-5 sentence summary highlighting the candidate strengths, technical expertise, and career trajectory. Write in third person.',
+          messages: [{ role: 'user', content: 'Summarize this resume:\n' + RESUME }]
+        })
+      });
+      const data = await res.json();
+      const text = data.content?.find(b => b.type === 'text')?.text || '';
+      result.textContent = text;
+      result.style.display = 'block';
+    } catch(e) {
+      error.style.display = 'block';
+    }
+
+    btn.disabled = false;
+    btn.textContent = '✦ Summarize My Resume';
+    loading.style.display = 'none';
+  }
+</script>
+</body>
+</html>
